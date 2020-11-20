@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/f_course"
+        android:icon="@android:drawable/ic_lock_power_off"
+        android:title="@string/title_course" />
+
+    <item
+        android:id="@+id/f_profile"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/title_profile" />
+
+    <item
+        android:id="@+id/f_league"
+        android:icon="@android:drawable/arrow_up_float"
+        android:title="@string/title_league" />
+
+    <item
+        android:id="@+id/f_shop"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/title_shop" />
+
+</menu>

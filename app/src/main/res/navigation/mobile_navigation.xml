@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/f_course">
+
+    <fragment
+        android:id="@+id/f_course"
+        android:name="com.ieti.duolingoproyect.ui.course.CourseFragment"
+        android:label="@string/title_course"
+        tools:layout="@layout/fragment_course" />
+
+    <fragment
+        android:id="@+id/f_profile"
+        android:name="com.ieti.duolingoproyect.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/f_league"
+        android:name="com.ieti.duolingoproyect.ui.league.LeagueFragment"
+        android:label="@string/title_league"
+        tools:layout="@layout/fragment_league" />
+    <fragment
+        android:id="@+id/f_shop"
+        android:name="com.ieti.duolingoproyect.ui.shop.ShopFragment"
+        android:label="@string/title_shop"
+        tools:layout="@layout/fragment_shop" />
+</navigation>
