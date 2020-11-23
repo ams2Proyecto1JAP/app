@@ -10,7 +10,9 @@ public class CourseViewModel extends ViewModel {
 
     public CourseViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Pestaña para los cursos");
+        mText.setValue("Pestaña para la liga");
+
+
     }
 
     public LiveData<String> getText() {

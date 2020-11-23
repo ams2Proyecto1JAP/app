@@ -30,6 +30,7 @@ public class LeagueFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        textView.setText("pruebaa2");
         return root;
     }
 }
