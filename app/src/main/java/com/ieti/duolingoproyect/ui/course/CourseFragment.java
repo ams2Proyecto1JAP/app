@@ -1,5 +1,6 @@
 package com.ieti.duolingoproyect.ui.course;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ieti.duolingoproyect.MainActivity;
+import com.ieti.duolingoproyect.MainActivity_Exercice;
 import com.ieti.duolingoproyect.Models.Course;
 import com.ieti.duolingoproyect.Models.Data;
 import com.ieti.duolingoproyect.Models.RecyclerAdapter;
@@ -39,7 +41,7 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemSelect
 
         Spinner spinnerMyCourses = root.findViewById(R.id.spinnerMyCourses);
         Spinner spinnerAddCourses =  root.findViewById(R.id.spinnerAddCourses);
-
+        
         ArrayAdapter<CharSequence> adapterMyCourses= new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.myCourses);
         ArrayAdapter<CharSequence> adapterAddCourses = new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.addCourses);
 
@@ -67,7 +69,7 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemSelect
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-        searchCourse(text);
+        searchCourse(text, getContext());
         //displayCategories(ingles);
     }
 
@@ -76,19 +78,19 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemSelect
 
     }
 
-    public void searchCourse(String language){
+    public void searchCourse(String language, Context context){
         for(Course c: Data.courses){
             if(c.getLanguage().equals(language)){
                 //Toast.makeText(this.getContext(), "Found!", Toast.LENGTH_SHORT).show();
                 //courseId = c.getCourseId();
                 //showCategories();
-                displayCategories(c, rvCategories);
+                displayCategories(c, rvCategories, context);
             }
         }
     }
 
-    public void displayCategories(Course course, RecyclerView rvCategories){
-        RecyclerAdapter rAdapter = new RecyclerAdapter(course.getCategories(), course.getCurrentLevels());
+    public void displayCategories(Course course, RecyclerView rvCategories, Context context){
+        RecyclerAdapter rAdapter = new RecyclerAdapter(course.getCategories(), course.getCurrentLevels(), context);
         rvCategories.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rvCategories.setAdapter(rAdapter);
     }

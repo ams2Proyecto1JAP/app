@@ -2,10 +2,6 @@ package com.ieti.duolingoproyect;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ieti.duolingoproyect.Models.Category;
@@ -13,15 +9,12 @@ import com.ieti.duolingoproyect.Models.Course;
 import com.ieti.duolingoproyect.Models.Data;
 import com.ieti.duolingoproyect.Models.Exercice;
 import com.ieti.duolingoproyect.Models.Level;
-import com.ieti.duolingoproyect.Models.RecyclerAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -34,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
-
 
         Data.myCourses.add(" - ");
         Data.myCourses.add("Ingles");
