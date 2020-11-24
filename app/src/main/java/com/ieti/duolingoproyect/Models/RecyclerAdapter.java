@@ -12,14 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ieti.duolingoproyect.MainActivity_Exercice;
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
     ArrayList<Category> arrayCategories;
     ArrayList<Level> arrayCurrentLevels;
     private Context context;
-    private int count;
     public RecyclerAdapter(ArrayList<Category> arrayCategories, ArrayList<Level> arrayCurrentLevels, Context context) {
         this.arrayCategories = arrayCategories;
         this.arrayCurrentLevels = arrayCurrentLevels;
@@ -57,13 +55,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
-            count++;
+
             Toast.makeText(v.getContext(), arrayCategories.get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
-            if (count >= 1)
-                {
-                    Intent intent = new Intent(context, MainActivity_Exercice.class);
-                    context.startActivity(intent);
-            }
+
+            Intent intent = new Intent(context, ExerciseActivity.class);
+
+            Level lvl = arrayCurrentLevels.get(getAdapterPosition());
+            intent.putExtra("lvl", lvl);
+            context.startActivity(intent);
+
 
 
         }

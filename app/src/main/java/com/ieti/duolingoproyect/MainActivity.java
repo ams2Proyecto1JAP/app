@@ -2,6 +2,10 @@ package com.ieti.duolingoproyect;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ieti.duolingoproyect.Models.Category;
@@ -9,12 +13,15 @@ import com.ieti.duolingoproyect.Models.Course;
 import com.ieti.duolingoproyect.Models.Data;
 import com.ieti.duolingoproyect.Models.Exercice;
 import com.ieti.duolingoproyect.Models.Level;
+import com.ieti.duolingoproyect.Models.RecyclerAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -27,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
 
         Data.myCourses.add(" - ");
         Data.myCourses.add("Ingles");
@@ -71,37 +79,45 @@ public class MainActivity extends AppCompatActivity {
 
         Exercice basicL1IngEx1 = new Exercice(1, "basicL1IngEx1");
         Exercice basicL1IngEx2 = new Exercice(2, "basicL1IngEx2");
+        Exercice basicL1IngEx3 = new Exercice(3, "basicL1IngEx2");
+        Exercice basicL1IngEx4 = new Exercice(4, "basicL1IngEx2");
+        Exercice basicL1IngEx5 = new Exercice(5, "basicL1IngEx2");
+
         ArrayList<Exercice> basicL1IngExerices = new ArrayList<Exercice>();
         basicL1IngExerices.add(basicL1IngEx1);
         basicL1IngExerices.add(basicL1IngEx2);
+        basicL1IngExerices.add(basicL1IngEx3);
+        basicL1IngExerices.add(basicL1IngEx4);
+        basicL1IngExerices.add(basicL1IngEx5);
+
         basicL1Ing.setExercices(basicL1IngExerices);
-        Exercice basicL2IngEx1 = new Exercice(3, "basicL2IngEx1");
-        Exercice basicL2IngEx2 = new Exercice(4, "basicL2IngEx1");
+        Exercice basicL2IngEx1 = new Exercice(1, "basicL2IngEx1");
+        Exercice basicL2IngEx2 = new Exercice(2, "basicL2IngEx1");
         ArrayList<Exercice> basicL2IngExerices = new ArrayList<Exercice>();
         basicL2IngExerices.add(basicL2IngEx1);
         basicL2IngExerices.add(basicL2IngEx2);
         basicL2Ing.setExercices(basicL2IngExerices);
-        Exercice foodL1IngEx1 = new Exercice(5, "foodL1IngEx1");
-        Exercice foodL1IngEx2 = new Exercice(6, "foodL1IngEx2");
+        Exercice foodL1IngEx1 = new Exercice(1, "foodL1IngEx1");
+        Exercice foodL1IngEx2 = new Exercice(2, "foodL1IngEx2");
         ArrayList<Exercice> foodL1IngExerices = new ArrayList<Exercice>();
         foodL1IngExerices.add(foodL1IngEx1);
         foodL1IngExerices.add(foodL1IngEx2);
         foodL1Ing.setExercices(foodL1IngExerices);
 
-        Exercice basicL1FrEx1 = new Exercice(7, "basicL1FrEx1");
-        Exercice basicL1FrEx2 = new Exercice(8, "basicL1FrEx2");
+        Exercice basicL1FrEx1 = new Exercice(1, "basicL1FrEx1");
+        Exercice basicL1FrEx2 = new Exercice(2, "basicL1FrEx2");
         ArrayList<Exercice> basicL1FrExerices = new ArrayList<Exercice>();
         basicL1FrExerices.add(basicL1FrEx1);
         basicL1FrExerices.add(basicL1FrEx2);
         basicL1Fr.setExercices(basicL1FrExerices);
-        Exercice basicL2FrEx1 = new Exercice(9, "basicL2FrEx1");
-        Exercice basicL2FrEx2 = new Exercice(10, "basicL2FrEx2");
+        Exercice basicL2FrEx1 = new Exercice(1, "basicL2FrEx1");
+        Exercice basicL2FrEx2 = new Exercice(2, "basicL2FrEx2");
         ArrayList<Exercice> basicL2FrExerices = new ArrayList<Exercice>();
         basicL2FrExerices.add(basicL2FrEx1);
         basicL2FrExerices.add(basicL2FrEx2);
         basicL2Fr.setExercices(basicL2FrExerices);
-        Exercice sportsL1FrEx1 = new Exercice(11, "sportsL1FrEx1");
-        Exercice sportsL1FrEx2 = new Exercice(12, "sportsL1FrEx2");
+        Exercice sportsL1FrEx1 = new Exercice(1, "sportsL1FrEx1");
+        Exercice sportsL1FrEx2 = new Exercice(2, "sportsL1FrEx2");
         ArrayList<Exercice> sportsL1FrExerices = new ArrayList<Exercice>();
         sportsL1FrExerices.add(sportsL1FrEx1);
         sportsL1FrExerices.add(sportsL1FrEx2);
@@ -116,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         frances.setCategories(categoriesFr);
 
         ArrayList<Level> currentLevelsIng = new ArrayList<Level>();
-        currentLevelsIng.add(basicL2Ing);
+        currentLevelsIng.add(basicL1Ing);
         currentLevelsIng.add(foodL1Ing);
         ingles.setCurrentLevels(currentLevelsIng);
 
@@ -134,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+
+
     }
 
 

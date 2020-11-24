@@ -1,8 +1,9 @@
 package com.ieti.duolingoproyect.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Level {
+public class Level implements Serializable {
     private int levelId;
     private int indexLevel;
     private ArrayList<Exercice> exercices;

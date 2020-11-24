@@ -1,6 +1,8 @@
 package com.ieti.duolingoproyect.Models;
 
-public class Exercice {
+import java.io.Serializable;
+
+public class Exercice implements Serializable {
     private int exerciceId;
     private String content;
 
