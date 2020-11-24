@@ -8,17 +8,17 @@
 
     <item
         android:id="@+id/f_profile"
-        android:icon="@drawable/baseline_face_white_48dp"
+        android:icon="@drawable/profile_iccon"
         android:title="@string/title_profile" />
 
     <item
         android:id="@+id/f_league"
-        android:icon="@drawable/baseline_emoji_events_white_48dp"
+        android:icon="@drawable/league_iccon"
         android:title="@string/title_league" />
 
     <item
         android:id="@+id/f_shop"
-        android:icon="@drawable/baseline_storefront_white_48dp"
+        android:icon="@drawable/shop_iccon"
         android:title="@string/title_shop" />
 
 </menu>
