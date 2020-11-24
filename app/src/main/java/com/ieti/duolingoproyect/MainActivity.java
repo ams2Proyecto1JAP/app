@@ -37,16 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         Data.myCourses.add(" - ");
-        Data.myCourses.add("Ingles");
-        Data.myCourses.add("Frances");
+        Data.myCourses.add("English");
+        Data.myCourses.add("French");
 
         Data.addCourses.add(" - ");
-        Data.addCourses.add("Japones");
-        Data.addCourses.add("Chino");
-        Data.addCourses.add("Portuges");
+        Data.addCourses.add("Japanese");
+        Data.addCourses.add("Chinese");
+        Data.addCourses.add("Portuguese");
 
-        ingles = new Course(1, "Ingles");
-        Course frances = new Course(2, "Frances");
+        ingles = new Course(1, "English");
+        Course frances = new Course(2, "French");
 
         Category basicIng = new Category(1, "Basic");
         Category foodIng = new Category(2, "Food");

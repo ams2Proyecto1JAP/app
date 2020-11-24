@@ -13,7 +13,8 @@
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
         android:layout_marginTop="52dp"
-        android:text="myCourses"
+        android:text="My Courses"
+        android:fontFamily="Verdana"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,34 +23,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="addCourse"
+        android:fontFamily="Verdana"
+        android:text="Add New Course"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toEndOf="@+id/myCourses"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerMyCourses"
-        android:layout_width="73dp"
-        android:layout_height="115dp"
+        android:layout_width="161dp"
+        android:layout_height="23dp"
         android:layout_marginTop="33dp"
         app:layout_constraintBottom_toTopOf="@+id/rvCategories"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myCourses"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.015"
         tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/spinnerAddCourses"
-        android:layout_width="70dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="189dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/rvCategories"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.756"
+        app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addCourse"
+        app:layout_constraintTop_toBottomOf="@+id/myCourses"
+        app:layout_constraintVertical_bias="0.005"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
