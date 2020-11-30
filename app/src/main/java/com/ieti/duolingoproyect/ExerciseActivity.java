@@ -48,6 +48,9 @@ public class ExerciseActivity extends AppCompatActivity {
 
 
 
+
+
+
     }
 
     public void nextExercise(){

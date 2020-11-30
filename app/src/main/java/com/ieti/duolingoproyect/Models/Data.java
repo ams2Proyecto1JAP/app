@@ -9,4 +9,5 @@ public class Data {
     public static ArrayList<Exercice> exercices = new ArrayList<Exercice>();
     public static ArrayList<String> myCourses = new ArrayList<String>();
     public static ArrayList<String> addCourses = new ArrayList<String>();
+    public static User appUser = null;
 }
