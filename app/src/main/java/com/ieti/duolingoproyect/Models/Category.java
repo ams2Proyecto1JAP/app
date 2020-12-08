@@ -1,8 +1,9 @@
 package com.ieti.duolingoproyect.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Category {
+public class Category implements Serializable {
     private int categoryId;
     private String name;
     private ArrayList<Level> levels;

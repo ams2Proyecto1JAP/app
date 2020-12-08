@@ -1,14 +1,22 @@
 package com.ieti.duolingoproyect;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ieti.duolingoproyect.Models.Category;
 import com.ieti.duolingoproyect.Models.Course;
+import com.ieti.duolingoproyect.Models.CrsModel;
 import com.ieti.duolingoproyect.Models.Data;
 import com.ieti.duolingoproyect.Models.Exercice;
 import com.ieti.duolingoproyect.Models.Level;
 import com.ieti.duolingoproyect.Models.User;
+import com.ieti.duolingoproyect.connection.InterfaceRMI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -16,16 +24,20 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import lipermi.handler.CallHandler;
+import lipermi.net.Client;
 
 public class MainActivity extends AppCompatActivity {
     int courseId = 0;
     Course ingles;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new ClientService().execute();
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         User user = new User(1, "usuario1", 650, 130);
@@ -147,9 +159,32 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
-
     }
 
+    /**
+     * Metodo de prueba para  testear conexion no tocar ni usar
+     */
+    public void testConn(){
+        Intent intent = new Intent(this, TestConnection.class);
+        startActivity(intent);
+    }
+}
 
+class ClientService extends AsyncTask<Void,Void, MainActivity> {
+
+    @Override
+    protected MainActivity doInBackground(Void... params) {
+        try{
+            CallHandler callHandler = new CallHandler();
+            Client client = new Client("192.168.1.15", 7777, callHandler);
+            InterfaceRMI interfaceRMI = (InterfaceRMI) client.getGlobal(InterfaceRMI.class);
+            Log.d("Tag", "########################## - +++++++++++++++++++++++");
+            Data.allCourses  = interfaceRMI.getAllCrs();
+
+            client.close();
+        } catch (IOException e){
+            Log.d("Tag", "exception client sercice "+e.toString());
+        }
+        return null;
+    }
 }

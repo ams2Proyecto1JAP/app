@@ -2,6 +2,7 @@ package com.ieti.duolingoproyect.ui.course;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +36,16 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemSelect
         Spinner spinnerMyCourses = root.findViewById(R.id.spinnerMyCourses);
         Spinner spinnerAddCourses =  root.findViewById(R.id.spinnerAddCourses);
         
-        ArrayAdapter<CharSequence> adapterMyCourses= new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.myCourses);
-        ArrayAdapter<CharSequence> adapterAddCourses = new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.addCourses);
+        //ArrayAdapter<CharSequence> adapterMyCourses= new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.myCourses);
+        ArrayAdapter<CharSequence> adapterAddCourses = new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.allCourses);
+        for(String s : Data.allCourses){
+            Log.d("Spinner ", s);
+        }
 
-        adapterMyCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //adapterMyCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterAddCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinnerMyCourses.setAdapter(adapterMyCourses);
+        //spinnerMyCourses.setAdapter(adapterMyCourses);
         spinnerAddCourses.setAdapter(adapterAddCourses);
 
         spinnerMyCourses.setOnItemSelectedListener(this);
