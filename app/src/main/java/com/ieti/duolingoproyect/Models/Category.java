@@ -7,11 +7,13 @@ public class Category implements Serializable {
     private int categoryId;
     private String name;
     private ArrayList<Level> levels;
+    int currentLevel;
 
     public Category(int categoryId, String name, ArrayList<Level> levels) {
         this.categoryId = categoryId;
         this.name = name;
         this.levels = levels;
+        this.currentLevel = 0;
     }
 
     public Category(int categoryId, String name) {
@@ -45,5 +47,13 @@ public class Category implements Serializable {
 
     public void setLevels(ArrayList<Level> levels) {
         this.levels = levels;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }

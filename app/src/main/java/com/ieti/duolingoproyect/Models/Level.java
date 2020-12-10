@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Level implements Serializable {
     private int levelId;
-    private int indexLevel;
     private ArrayList<Exercice> exercices;
 
     public Level(int levelId, ArrayList<Exercice> exercices) {
@@ -13,9 +12,8 @@ public class Level implements Serializable {
         this.exercices = exercices;
     }
 
-    public Level(int levelId, int indexLevel) {
+    public Level(int levelId) {
         this.levelId = levelId;
-        this.indexLevel = indexLevel;
     }
 
     public Level() {
@@ -38,11 +36,4 @@ public class Level implements Serializable {
         this.exercices = exercices;
     }
 
-    public int getIndexLevel() {
-        return indexLevel;
-    }
-
-    public void setIndexLevel(int indexLevel) {
-        this.indexLevel = indexLevel;
-    }
 }

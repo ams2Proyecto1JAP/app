@@ -16,11 +16,10 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
     ArrayList<Category> arrayCategories;
-    ArrayList<Level> arrayCurrentLevels;
+
     private Context context;
-    public RecyclerAdapter(ArrayList<Category> arrayCategories, ArrayList<Level> arrayCurrentLevels, Context context) {
+    public RecyclerAdapter(ArrayList<Category> arrayCategories, Context context) {
         this.arrayCategories = arrayCategories;
-        this.arrayCurrentLevels = arrayCurrentLevels;
         this.context = context;
     }
 
@@ -36,7 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvCategory.setText(arrayCategories.get(position).getName());
-        holder.tvCurrentLevel.setText(String.valueOf(arrayCurrentLevels.get(position).getIndexLevel()));
+        holder.tvCurrentLevel.setText(String.valueOf(arrayCategories.get(position).getCurrentLevel()));
     }
 
     @Override
@@ -60,7 +59,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
             Intent intent = new Intent(context, ExerciseActivity.class);
 
-            Level lvl = arrayCurrentLevels.get(getAdapterPosition());
+            Category cat = arrayCategories.get(getAdapterPosition());
+            Level lvl = cat.getLevels().get(cat.getCurrentLevel());
             intent.putExtra("lvl", lvl);
             context.startActivity(intent);
 

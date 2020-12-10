@@ -21,11 +21,13 @@ import com.ieti.duolingoproyect.Models.Data;
 import com.ieti.duolingoproyect.Models.RecyclerAdapter;
 import com.ieti.duolingoproyect.R;
 
-public class CourseFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+public class CourseFragment extends Fragment {
 
     private CourseViewModel courseViewModel;
+    private Context context;
     RecyclerView rvCategories;
     Course ingles;
+    private boolean firstClick;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,61 +35,81 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemSelect
                 new ViewModelProvider(this).get(CourseViewModel.class);
         View root = inflater.inflate(R.layout.fragment_course, container, false);
 
+        firstClick = false;
+        context = getContext();
         Spinner spinnerMyCourses = root.findViewById(R.id.spinnerMyCourses);
         Spinner spinnerAddCourses =  root.findViewById(R.id.spinnerAddCourses);
         
-        //ArrayAdapter<CharSequence> adapterMyCourses= new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.myCourses);
+        ArrayAdapter<CharSequence> adapterMyCourses= new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.myCourses);
         ArrayAdapter<CharSequence> adapterAddCourses = new ArrayAdapter(this.getContext(), android.R.layout.simple_spinner_dropdown_item, Data.allCourses);
-        for(String s : Data.allCourses){
-            Log.d("Spinner ", s);
-        }
 
-        //adapterMyCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        adapterMyCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterAddCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //spinnerMyCourses.setAdapter(adapterMyCourses);
+        spinnerMyCourses.setAdapter(adapterMyCourses);
         spinnerAddCourses.setAdapter(adapterAddCourses);
 
-        spinnerMyCourses.setOnItemSelectedListener(this);
-        spinnerAddCourses.setOnItemSelectedListener(this);
 
         rvCategories = root.findViewById(R.id.rvCategories);
-        //RecyclerAdapter recyclerAdapter = new RecyclerAdapter(ingles.getCategories(), ingles.getCurrentLevels());
+
         rvCategories.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        //rvCategories.setAdapter(recy,clerAdapter);
-        //Course ingles = Data.courses.get(0);
-        /*rvCategories = root.findViewById(R.id.rvCategories);
-        RecyclerAdapter rAdapter = new RecyclerAdapter(ingles.getCategories(), ingles.getCurrentLevels());
-        rvCategories.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        rvCategories.setAdapter(rAdapter);*/
+
+        spinnerMyCourses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                displayCategories(Data.course, rvCategories, getContext());
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinnerAddCourses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!firstClick)
+                    firstClick = true;
+                else
+                {
+
+                    String crs = Data.allCourses.get(position);
+                    //Log.d("crs", String.valueOf(position) + ", " + crs);
+                    Data.allCourses.remove(position);
+
+
+                    Data.myCourses.add(crs);
+
+
+                    ArrayAdapter<CharSequence> adapterMyCourses= new ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, Data.myCourses);
+                    ArrayAdapter<CharSequence> adapterAddCourses = new ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, Data.allCourses);
+                    spinnerMyCourses.setAdapter(adapterMyCourses);
+                    spinnerAddCourses.setAdapter(adapterAddCourses);
+                    firstClick = false;
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
         return root;
-    }@Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
-        //Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-        searchCourse(text, getContext());
-        //displayCategories(ingles);
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    public void searchCourse(String language, Context context){
-        for(Course c: Data.courses){
-            if(c.getLanguage().equals(language)){
-                //Toast.makeText(this.getContext(), "Found!", Toast.LENGTH_SHORT).show();
-                //courseId = c.getCourseId();
-                //showCategories();
-                displayCategories(c, rvCategories, context);
-            }
-        }
-    }
 
     public void displayCategories(Course course, RecyclerView rvCategories, Context context){
-        RecyclerAdapter rAdapter = new RecyclerAdapter(course.getCategories(), course.getCurrentLevels(), context);
+        RecyclerAdapter rAdapter = new RecyclerAdapter(course.getCategories(), context);
         rvCategories.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rvCategories.setAdapter(rAdapter);
     }

@@ -4,19 +4,21 @@ import java.util.ArrayList;
 
 public class Course {
     private int courseId;
-    private String language;
+    private String langSrc;
+    private String langDst;
     private ArrayList<Category> categories;
-    private ArrayList<Level> currentLevels;
 
-    public Course(int courseId, String language, ArrayList<Category> categories) {
+    public Course(int courseId, String langSrc, String langDst, ArrayList<Category> categories) {
         this.courseId = courseId;
-        this.language = language;
+        this.langSrc = langSrc;
+        this.langDst = langDst;
         this.categories = categories;
     }
 
-    public Course(int courseId, String language) {
+    public Course(int courseId,String langSrc, String langDst) {
         this.courseId = courseId;
-        this.language = language;
+        this.langSrc = langSrc;
+        this.langDst = langDst;
     }
 
     public Course() {
@@ -31,12 +33,20 @@ public class Course {
         this.courseId = courseId;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getLangSrc() {
+        return langSrc;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setLangSrc(String langSrc) {
+        this.langSrc = langSrc;
+    }
+
+    public String getLangDst() {
+        return langDst;
+    }
+
+    public void setLangDst(String langDst) {
+        this.langDst = langDst;
     }
 
     public ArrayList<Category> getCategories() {
@@ -47,11 +57,5 @@ public class Course {
         this.categories = categories;
     }
 
-    public ArrayList<Level> getCurrentLevels() {
-        return currentLevels;
-    }
 
-    public void setCurrentLevels(ArrayList<Level> currentLevels) {
-        this.currentLevels = currentLevels;
-    }
 }
