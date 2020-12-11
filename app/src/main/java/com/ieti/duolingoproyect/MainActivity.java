@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.ieti.duolingoproyect.Models.Exercice;
 import com.ieti.duolingoproyect.Models.Level;
 import com.ieti.duolingoproyect.Models.User;
 import com.ieti.duolingoproyect.connection.InterfaceRMI;
+import com.ieti.duolingoproyect.utils.Config;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -23,6 +25,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -37,10 +43,16 @@ public class MainActivity extends AppCompatActivity {
     Course ingles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new ClientService().execute();
+        //new ClientService().execute();
 
+        Data.configDir = getApplicationContext().getFilesDir();
+        Config.generateConfig(Data.configDir, "0.0.0.0", "defaultUser", "password", false);
+
+        Config configurator = Config.getConfigInstance(Data.configFile);
 
         User user = new User(1, "usuario1", 650, 130);
         Data.appUser = user;
