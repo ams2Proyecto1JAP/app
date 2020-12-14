@@ -7,8 +7,8 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <LinearLayout
-        android:layout_width="374dp"
-        android:layout_height="69dp"
+        android:layout_width="371dp"
+        android:layout_height="225dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.567"
@@ -18,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="137dp"
-            android:layout_height="56dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -26,6 +26,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="37dp"
                 android:text="TextView" />
+
+            <EditText
+                android:id="@+id/etIpserver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+            <EditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"/>
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                />
+
+            <Button
+                android:id="@+id/btSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button" />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -62,14 +89,14 @@
                 <TextView
                     android:id="@+id/txtCoins"
                     android:layout_width="150dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="31dp"
                     android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/ivCoins"
                     android:layout_width="8dp"
                     android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="right"
                     android:layout_weight="1"
                     android:src="@drawable/ic_lighting"
                     tools:src="@drawable/ic_money" />

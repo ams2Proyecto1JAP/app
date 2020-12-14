@@ -1,6 +1,7 @@
 package com.ieti.duolingoproyect.utils;
 
 import android.os.Build;
+import android.util.Base64;
 import android.util.Log;
 import android.util.Xml;
 
@@ -105,10 +106,13 @@ public class Config {
             return configurations.get(key);
         else
         {
-            String pwEncrypted = configurations.get(key);
+            String pwEncryptedBase64 = configurations.get(key);
+
+            byte[] pwEncrypted = Base64.decode(pwEncryptedBase64, Base64.DEFAULT);
+
             byte[] cKey = Crypt.generateKey(Data.key);
-            byte[] pwDecrypted = Crypt.decrypt(cKey, pwEncrypted.getBytes());
-            return  new String(pwDecrypted, StandardCharsets.UTF_8);
+            byte[] pwDecrypted = Crypt.decrypt(cKey, pwEncrypted);
+            return new String(pwDecrypted, StandardCharsets.UTF_8);
         }
     }
 
@@ -173,7 +177,11 @@ public class Config {
                 serializer.startTag(null, configParamPassword);
                 byte[] key = Crypt.generateKey(Data.key);
                 byte[] pwEncrypted = Crypt.encrypt(key, password.getBytes());
-                String encryptedPw = new String(pwEncrypted, StandardCharsets.UTF_8);
+
+                String encryptedPw = Base64.encodeToString(pwEncrypted, Base64.DEFAULT);
+
+
+
                 serializer.text(encryptedPw);
                 serializer.endTag(null, configParamPassword);
 

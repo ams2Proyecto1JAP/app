@@ -2,6 +2,7 @@ package com.ieti.duolingoproyect;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
@@ -19,6 +20,7 @@ import com.ieti.duolingoproyect.Models.User;
 import com.ieti.duolingoproyect.connection.InterfaceRMI;
 import com.ieti.duolingoproyect.utils.Config;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -41,6 +43,7 @@ import lipermi.net.Client;
 public class MainActivity extends AppCompatActivity {
     int courseId = 0;
     Course ingles;
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

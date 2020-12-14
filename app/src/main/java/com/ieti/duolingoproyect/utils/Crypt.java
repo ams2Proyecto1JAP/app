@@ -1,8 +1,11 @@
 package com.ieti.duolingoproyect.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -44,20 +47,23 @@ public class Crypt {
         return decrypted;
     }
 
-    public static byte[] generateKey(String key)
+    public static byte[] generateKey(String sKey)
     {
-        byte[] keyStart = key.getBytes();
-        KeyGenerator kgen = null;
-        SecureRandom sr = null;
+        byte[] key = new byte[0];
         try {
-            kgen = KeyGenerator.getInstance("AES");
-            sr = SecureRandom.getInstance("SHA1PRNG");
+            key = sKey.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        MessageDigest sha = null;
+        try {
+            sha = MessageDigest.getInstance("SHA-1");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        sr.setSeed(keyStart);
-        kgen.init(128, sr); // 192 and 256 bits may not be available
-        SecretKey skey = kgen.generateKey();
-        return skey.getEncoded();
+        key = sha.digest(key);
+        key = Arrays.copyOf(key, 16);
+
+        return key;
     }
 }
