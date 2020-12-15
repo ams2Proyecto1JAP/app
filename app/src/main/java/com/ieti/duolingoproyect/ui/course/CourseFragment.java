@@ -106,8 +106,6 @@ public class CourseFragment extends Fragment {
         return root;
     }
 
-
-
     public void displayCategories(Course course, RecyclerView rvCategories, Context context){
         RecyclerAdapter rAdapter = new RecyclerAdapter(course.getCategories(), context);
         rvCategories.setLayoutManager(new LinearLayoutManager(this.getContext()));
