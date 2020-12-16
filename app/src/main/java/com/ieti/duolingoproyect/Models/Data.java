@@ -10,6 +10,7 @@ public class Data {
     public static User appUser = null;
     public static final String EXS_TYPE_TEST = "testType";
     public static final String EXS_TYPE_OPEN_TRAD = "tradOpen";
+    public static int initialSessionPoints;
 
     public static final String testType1 = "{\"testExercise\":{\"phrTranslated\": \"Hello\",\"phrBadTranslated1\": \"Car\",\"phrBadTranslated2\": \"Plane\",\"phrToTranslate\": \"Hola\"}}";
     public static final String testType2 = "{\"testExercise\":{\"phrTranslated\": \"The car is green\",\"phrBadTranslated1\": \"Green is the car\",\"phrBadTranslated2\": \"Is the car green\",\"phrToTranslate\": \"El coche es verde\"}}";

@@ -30,9 +30,7 @@ public class ProfileFragment extends Fragment {
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-
-
-
+        
         appUser = Data.appUser;
 
         final TextView txtProfile = root.findViewById(R.id.txtProfile);
@@ -60,7 +58,7 @@ public class ProfileFragment extends Fragment {
         ivCoins.setImageDrawable(getResources().getDrawable(R.drawable.ic_money));
 
 
-        Toast.makeText(this.getContext(), "hola", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this.getContext(), "hola", Toast.LENGTH_SHORT).show();
 
 
         /*
