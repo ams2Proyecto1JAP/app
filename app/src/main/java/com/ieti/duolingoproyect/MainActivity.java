@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //new ClientService().execute();
+        new ClientService().execute();
 
         Data.configDir = getApplicationContext().getFilesDir();
         Config.generateConfig(Data.configDir, "0.0.0.0", "defaultUser", "password", false);
