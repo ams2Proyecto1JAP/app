@@ -8,18 +8,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.ieti.duolingoproyect.DAO.ExerciceTest;
-import com.ieti.duolingoproyect.DAO.ExerciceTestDao;
-import com.ieti.duolingoproyect.DAO.ExerciceTestImplements;
+import com.ieti.duolingoproyect.DAO.Test.ExerciceTest;
+import com.ieti.duolingoproyect.DAO.Test.ExerciceTestDao;
+import com.ieti.duolingoproyect.DAO.Test.ExerciceTestImplements;
+import com.ieti.duolingoproyect.DAO.Translate.ExerciceTranslate;
+import com.ieti.duolingoproyect.DAO.Translate.ExerciceTranslateDao;
+import com.ieti.duolingoproyect.DAO.Translate.ExerciceTranslateImplements;
 import com.ieti.duolingoproyect.Models.Data;
 import com.ieti.duolingoproyect.Models.Exercice;
 import com.ieti.duolingoproyect.Models.Level;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 
 import org.json.JSONException;
@@ -29,9 +32,6 @@ public class ExerciseActivity extends AppCompatActivity {
     int count;
     int index;
     ArrayList<Exercice> exs;
-    //DAO
-    private ExerciceTestDao ETDAO = new ExerciceTestImplements();
-    private ExerciceTest et = null;
     private boolean noMistakes = true;
 
     @Override
@@ -57,6 +57,8 @@ public class ExerciseActivity extends AppCompatActivity {
             Exercice ex = exs.get(index);
             if (ex.getType().equals(Data.EXS_TYPE_TEST)) {
                 loadExTest(ex.getContent());
+            }else if(ex.getType().equals(Data.EXS_TYPE_OPEN_TRAD)){
+                loadExTranslate(ex.getContent());
             }
             index++;
         }
@@ -86,6 +88,8 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
     public void loadExTest(String content) {
+        ExerciceTestDao ETDAO = new ExerciceTestImplements();
+        ExerciceTest et = null;
         setContentView(R.layout.exercice_test);
         try {
             et = ETDAO.getExerciceTextByContent(content);
@@ -128,7 +132,6 @@ public class ExerciseActivity extends AppCompatActivity {
                         .setAction("Siguiente Ejercicio", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Log.i("Snackbar", "Pulsada acción snackbar!");
                                 nextExercise();
                             }
                         })
@@ -190,10 +193,68 @@ public class ExerciseActivity extends AppCompatActivity {
         }
     }
 
-    public void callShowGains(int pointsEarned, int coinsEarned){
+    public void callShowGains(int pointsEarned, int coinsEarned) {
         Intent intent = new Intent(this, ShowGainsActivity.class);
         intent.putExtra("pointsEarned", pointsEarned);
         intent.putExtra("coinsEarned", coinsEarned);
         startActivity(intent);
+    }
+
+    public void loadExTranslate(String content){
+        ExerciceTranslateDao ETDAO = new ExerciceTranslateImplements();
+        setContentView(R.layout.exercice_translate);
+        TextView tvPhrases = findViewById(R.id.tvPhrases);
+        EditText etText = findViewById(R.id.etText);
+        Button btCheckTranslate = findViewById(R.id.btn_checkTranslate);
+        ExerciceTranslate et = null;
+        try {
+            et = ETDAO.getExerciceTextByContent(content);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.v("Debug", tvPhrases.toString());
+        tvPhrases.setText(et.getToTrans());
+        Log.v("Debug", et.getToTrans());
+        String[] options = et.getTranslated();
+        btCheckTranslate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etText.getText() == null){
+                    Toast.makeText(getApplicationContext(), "Tienes que introducir algun dato", Toast.LENGTH_LONG).show();
+                }else{
+                    String inputPhrase= etText.getText().toString();
+                    String invalidChars = ".:,;!\\\"·$%&/()=?¿¡ ";
+                    CharSequence empty = "";
+                    for(int i=0; i<invalidChars.length(); i++){
+                        inputPhrase = inputPhrase.replace(String.valueOf(invalidChars.charAt(i)),empty);
+                    }
+                    inputPhrase = inputPhrase.trim();
+                    Boolean ok = false;
+
+                    for (int i=0; i<options.length; i++){
+                        if(inputPhrase.equalsIgnoreCase(options[i])){
+                            ok=true;
+                        }
+                    }
+                    String snackSent=null;
+
+                    if(ok==false){
+                        snackSent = "Has fallado, tienes que mejorar...";
+                    }else{
+                        snackSent = "Lo has logrado!";
+                    }
+
+                    Snackbar.make(v, snackSent, Snackbar.LENGTH_LONG)
+                            .setActionTextColor(Color.CYAN)
+                            .setAction("Siguiente Ejercicio", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    nextExercise();
+                                }
+                            })
+                            .show();
+                }
+            }
+        });
     }
 }

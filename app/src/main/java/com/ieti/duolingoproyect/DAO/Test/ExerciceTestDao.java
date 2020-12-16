@@ -1,6 +1,4 @@
-package com.ieti.duolingoproyect.DAO;
-
-import com.ieti.duolingoproyect.Models.Exercice;
+package com.ieti.duolingoproyect.DAO.Test;
 
 import org.json.JSONException;
 

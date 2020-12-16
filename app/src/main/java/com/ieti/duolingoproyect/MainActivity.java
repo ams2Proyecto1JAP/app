@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Level> lvls = new ArrayList<Level>();
 
 
-        Exercice ex1 = new Exercice(1, Data.testType1, Data.EXS_TYPE_TEST);
+        Exercice ex1 = new Exercice(1, Data.testType1, Data.EXS_TYPE_OPEN_TRAD);
         Exercice ex2 = new Exercice(2, Data.testType2, Data.EXS_TYPE_TEST);
         Exercice ex3 = new Exercice(3, Data.testType3, Data.EXS_TYPE_TEST);
         ArrayList<Exercice> exs = new ArrayList<Exercice>();

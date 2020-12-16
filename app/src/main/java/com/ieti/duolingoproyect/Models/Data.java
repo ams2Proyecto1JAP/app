@@ -12,7 +12,7 @@ public class Data {
     public static final String EXS_TYPE_OPEN_TRAD = "tradOpen";
     public static int initialSessionPoints;
 
-    public static final String testType1 = "{\"testExercise\":{\"phrTranslated\": \"Hello\",\"phrBadTranslated1\": \"Car\",\"phrBadTranslated2\": \"Plane\",\"phrToTranslate\": \"Hola\"}}";
+    public static final String testType1 = "{\"openTradExercise\":{\"options\":[\"Hello\",\"Hi\"],\"phrToTranslate\":\"Hola\"}}";
     public static final String testType2 = "{\"testExercise\":{\"phrTranslated\": \"The car is green\",\"phrBadTranslated1\": \"Green is the car\",\"phrBadTranslated2\": \"Is the car green\",\"phrToTranslate\": \"El coche es verde\"}}";
     public static final String testType3 = "{\"testExercise\":{\"phrTranslated\": \"I play Pokemon\",\"phrBadTranslated1\": \"I plays Pokemon\",\"phrBadTranslated2\": \"Me play Pokemon\",\"phrToTranslate\": \"Yo juego a Pokemon\"}}";
 }

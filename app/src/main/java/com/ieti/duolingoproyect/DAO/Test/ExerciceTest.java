@@ -1,4 +1,4 @@
-package com.ieti.duolingoproyect.DAO;
+package com.ieti.duolingoproyect.DAO.Test;
 
 public class ExerciceTest {
     private String toTrans;
