@@ -82,6 +82,7 @@ public class ProfileFragment extends Fragment {
                 configurator.setValue(Config.configParamIp, etIp.getText().toString());
                 configurator.setValue(Config.configParamUser, etUs.getText().toString());
                 configurator.setValue(Config.configParamPassword, etPw.getText().toString());
+                Toast.makeText(getContext(), "Cambios guardados correctamente", Toast.LENGTH_LONG);
             }
         });
 
