@@ -2,6 +2,7 @@ package com.ieti.duolingoproyect;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,7 @@ public class ExerciseActivity extends AppCompatActivity {
     //DAO
     private ExerciceTestDao ETDAO = new ExerciceTestImplements();
     private ExerciceTest et = null;
+    private boolean noMistakes = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +46,42 @@ public class ExerciseActivity extends AppCompatActivity {
 
     public void nextExercise() {
         if (index >= count) {
-            Toast.makeText(this, "No hay mas ejercicios en este nivel", Toast.LENGTH_LONG).show();
+            int coinsEarned = 0;
+            addPointsLevelDone();
+            coinsEarned = calculateCoinsEarned();
+            coinsEarned = coinsEarned + calculateBonusCoins();
+            callShowGains(10, coinsEarned);
+            this.finish();
+            //Toast.makeText(this, "No hay mas ejercicios en este nivel", Toast.LENGTH_LONG).show();
         } else {
             Exercice ex = exs.get(index);
             if (ex.getType().equals(Data.EXS_TYPE_TEST)) {
                 loadExTest(ex.getContent());
             }
             index++;
+        }
+    }
 
+    public void addPointsLevelDone(){
+        Data.appUser.setPoints(Data.appUser.getPoints()+10);
+    }
+
+    public int calculateCoinsEarned(){
+        int earnedSessionPoints = Data.appUser.getPoints() - Data.initialSessionPoints;
+        if(earnedSessionPoints%50 == 0){
+            Data.appUser.setCoins(Data.appUser.getCoins()+10);
+            return 10;
+        }else{
+            return 0;
+        }
+    }
+
+    public int calculateBonusCoins(){
+        if(this.noMistakes){
+            Data.appUser.setCoins(Data.appUser.getCoins()+150);
+            return 150;
+        }else{
+            return 0;
         }
     }
 
@@ -89,6 +119,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 if (sentence[0].equals(correct)) {
                     snackSent = trueSent;
                 } else {
+                    noMistakes = false;
                     snackSent = falseSent;
                 }
 
@@ -157,5 +188,12 @@ public class ExerciseActivity extends AppCompatActivity {
             btn_sentence2.setText(inc2);
             btn_sentence3.setText(inc1);
         }
+    }
+
+    public void callShowGains(int pointsEarned, int coinsEarned){
+        Intent intent = new Intent(this, ShowGainsActivity.class);
+        intent.putExtra("pointsEarned", pointsEarned);
+        intent.putExtra("coinsEarned", coinsEarned);
+        startActivity(intent);
     }
 }

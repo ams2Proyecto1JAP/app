@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         new ClientService().execute();
 
-
         User user = new User(1, "usuario1", 650, 130);
         Data.appUser = user;
+        Data.initialSessionPoints = Data.appUser.getPoints();
 
         Course course = new Course(1, "Spanish", "English");
 
@@ -100,7 +100,7 @@ class ClientService extends AsyncTask<Void,Void, MainActivity> {
     protected MainActivity doInBackground(Void... params) {
         try{
             CallHandler callHandler = new CallHandler();
-            Client client = new Client("192.168.56.1", 7777, callHandler);
+            Client client = new Client("192.168.1.15", 7777, callHandler);
             InterfaceRMI interfaceRMI = (InterfaceRMI) client.getGlobal(InterfaceRMI.class);
             Log.d("Tag", "########################## - +++++++++++++++++++++++");
             Data.allCourses  = interfaceRMI.getAllCrs();
