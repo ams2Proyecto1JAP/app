@@ -36,9 +36,7 @@ public class ProfileFragment extends Fragment {
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-
-
-
+        
         appUser = Data.appUser;
 
         final TextView txtProfile = root.findViewById(R.id.txtProfile);
@@ -85,7 +83,6 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getContext(), "Cambios guardados correctamente", Toast.LENGTH_LONG);
             }
         });
-
 
 
 

@@ -55,10 +55,12 @@ public class MainActivity extends AppCompatActivity {
         Data.configDir = getApplicationContext().getFilesDir();
         Config.generateConfig(Data.configDir, "0.0.0.0", "defaultUser", "password", false);
 
+
         Config configurator = Config.getConfigInstance(Data.configFile);
 
         User user = new User(1, "usuario1", 650, 130);
         Data.appUser = user;
+        Data.initialSessionPoints = Data.appUser.getPoints();
 
         Course course = new Course(1, "Spanish", "English");
 
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Level> lvls = new ArrayList<Level>();
 
 
-        Exercice ex1 = new Exercice(1, Data.testType1, Data.EXS_TYPE_TEST);
+        Exercice ex1 = new Exercice(1, Data.testType1, Data.EXS_TYPE_OPEN_TRAD);
         Exercice ex2 = new Exercice(2, Data.testType2, Data.EXS_TYPE_TEST);
         Exercice ex3 = new Exercice(3, Data.testType3, Data.EXS_TYPE_TEST);
         ArrayList<Exercice> exs = new ArrayList<Exercice>();
@@ -115,9 +117,8 @@ class ClientService extends AsyncTask<Void,Void, MainActivity> {
     protected MainActivity doInBackground(Void... params) {
         try{
             CallHandler callHandler = new CallHandler();
-            Client client = new Client("192.168.1.10", 7777, callHandler);
+            Client client = new Client("192.168.56.1", 7777, callHandler);
             InterfaceRMI interfaceRMI = (InterfaceRMI) client.getGlobal(InterfaceRMI.class);
-            Log.d("Tag", "########################## - +++++++++++++++++++++++");
             Data.allCourses  = interfaceRMI.getAllCrs();
 
             client.close();
