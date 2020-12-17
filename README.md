@@ -10,7 +10,7 @@ Es necesario tener instalado AndroidStudio. Abrir AndroidStudio ir a File -> New
 
 CREAR LA BASE DATOS:
 
-Para esto es necesario tener MySQL Server operativo en el sistema. Entrar en MySQL y crear una base de datos con el comando -> create database ;
+Para esto es necesario tener MySQL Server operativo en el sistema. Entrar en MySQL y crear una base de datos con el comando -> create database <nombreBaseDeDatos>;
 
 PASOS PREVIOS ANTES DE LANZAR LA APPLICACION:
 
