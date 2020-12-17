@@ -29,7 +29,7 @@ En la linea 103: Client client = new Client("ip", 7777, callHandler); cambiar ip
 LANZAR LA APPLICACION:
 
 En el explorador de archivos de eclipse ir a Duolingo_Desktop -> src -> main -> Interface.java. Abrir el archvio y ejecutar el programa (Run Interface).
-Para usar la aplicaion es app es necesario mantener el programa Interface en funcionamiento. En AndroidStudio ir a app y hacer click en Run 'app' (triangulo verde en la barra de arriba).
+Para usar la aplicacion de app es necesario mantener el programa Interface en funcionamiento. En AndroidStudio ir a app y hacer click en Run 'app' (triangulo verde en la barra de arriba).
 
 
 
