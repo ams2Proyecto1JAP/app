@@ -161,13 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Metodo de prueba para  testear conexion no tocar ni usar
-     */
-    public void testConn(){
-        Intent intent = new Intent(this, TestConnection.class);
-        startActivity(intent);
-    }
+
 }
 
 class ClientService extends AsyncTask<Void,Void, MainActivity> {
@@ -176,9 +170,9 @@ class ClientService extends AsyncTask<Void,Void, MainActivity> {
     protected MainActivity doInBackground(Void... params) {
         try{
             CallHandler callHandler = new CallHandler();
-            Client client = new Client("192.168.1.15", 7777, callHandler);
+            Client client = new Client("0.0.0.0", 7777, callHandler);
             InterfaceRMI interfaceRMI = (InterfaceRMI) client.getGlobal(InterfaceRMI.class);
-            Log.d("Tag", "########################## - +++++++++++++++++++++++");
+
             Data.allCourses  = interfaceRMI.getAllCrs();
 
             client.close();
