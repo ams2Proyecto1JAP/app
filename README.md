@@ -6,8 +6,7 @@ Instructivo de uso para la applicacion App:
 ****DESCARGAR EL CODIGO FUENTE DE LA APLICACION****:
 -----------------------------------------------------
 
-Descargar el .zip que ofrece GitHub para la release v1.0.1 y desde Android Studio ir a "File --> Open" --> Seleccionar la carpeta "app" del proyecto donde la hayas descargado en tu sistema
-
+Descargar y descomprimir el .zip que ofrece GitHub para la release v1.0.1 y desde Android Studio ir a "File --> Open" --> Seleccionar la carpeta "app-1.0.1" donde la hayas descomprimido en tu sistema
 
 
 
