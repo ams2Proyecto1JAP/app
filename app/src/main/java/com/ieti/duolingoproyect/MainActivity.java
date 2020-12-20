@@ -117,7 +117,7 @@ class ClientService extends AsyncTask<Void,Void, MainActivity> {
     protected MainActivity doInBackground(Void... params) {
         try{
             CallHandler callHandler = new CallHandler();
-            Client client = new Client("192.168.56.1", 7777, callHandler);
+            Client client = new Client("0.0.0.0", 7777, callHandler);
             InterfaceRMI interfaceRMI = (InterfaceRMI) client.getGlobal(InterfaceRMI.class);
             Data.allCourses  = interfaceRMI.getAllCrs();
 
