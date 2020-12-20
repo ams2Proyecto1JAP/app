@@ -35,6 +35,8 @@ Y en la linea 173 sustituir la ip "0.0.0.0" con la IP donde se esté ejecutando 
 
 (Carpeta) Java --> (Paquete) com.ieti.duolingoproyect --> Lanzar: MainActivity.java
 
+** Para que los cursos se carguen en el Spinner del fragment "Course" se necesita cambiar de fragmento y volver a abrir el fragmento "Course", ya que los datos se cargan en el Spinner al abrir el fragmento, pero tarda más en hacer la conexión RMI que en cargar el fragmento course.
+
 
 
 
