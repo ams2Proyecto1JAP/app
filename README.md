@@ -13,7 +13,7 @@ Para poder utilizar la conexión RMI con el servidor donde se descargan los curs
 ****DESCARGAR EL CODIGO FUENTE DE LA APLICACION****:
 -----------------------------------------------------
 
-Descargar el .zip que ofrece GitHub para la release v3.0 y desde Android Studio ir a "File --> Open" --> Seleccionar la carpeta "app-3.0"  donde la hayas descomprimido en tu sistema
+Descargar el .zip que ofrece GitHub para la release v4.0 y desde Android Studio ir a "File --> Open" --> Seleccionar la carpeta "app-4.0"  donde la hayas descomprimido en tu sistema
 
 
 
